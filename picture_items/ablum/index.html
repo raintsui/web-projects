@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>图片相册（可放大查看）</title>
+	<style type="text/css">
+		*{margin:0;padding:0;}
+		/*body{
+			background: #ccc;
+		}*/
+		body{
+			position: relative;
+		}
+		#ablum{margin: 0 auto;width: 970px;}
+		#ablum h1{
+			transform:rotate(90deg);position:absolute;left: 1%;top:30%;font-family: Arial,Tahoma;}
+		#images li{
+			list-style: none;
+			float: left;
+			width: 200px;
+			height: 286px;
+			margin: 10px 20px;
+			border-radius: 5px;
+			box-shadow: 5px 5px 5px #999;
+			border:1px solid #ccc;
+		}
+		#black{
+			width: 100%;
+			height: 100%;/*这样设置之后，高度恰好是视口的高度。根据用户代理的不同，最初的包含块可能是画布或 HTML 元素。因此若是没有设置其他的有特殊定位的父级，它就相当于最初包含块。*/
+			background: rgba(000,000,000,.7);
+			display: none;
+			position:absolute;
+			top: 0;
+			left: 0;
+		}
+		#big{
+			position: absolute;
+			height: 620px;
+			width: 500px;
+			border:10px solid #fff;
+			display:none; 
+			padding: 10px 30px;
+		}
+		#big img{
+			width: 100%;
+			height: 100%;
+		}
+		#left,#right{
+			font-size: 2em;
+			color: #fff;
+			font-weight: bolder;
+			position: absolute;
+			top: 50%;
+			margin-top: -18px;
+			height: 36px;
+			line-height: 36px;
+			text-decoration: none;
+
+		}
+		#left{
+			left:-80px;
+		}
+		#right{
+			right: -80px;
+		}
+		.clear{
+			clear: both;
+		}
+
+	</style>
+	<script type="text/javascript">
+		window.onload=function(){
+			var alinks = document.getElementById('images').getElementsByTagName('a');
+			var black = document.getElementById('black');
+			var big = document.getElementById('big');
+			var bigpic = document.getElementById('big_pic');
+			var left = document.getElementById('left');
+			var right = document.getElementById('right');
+			var cur=0;
+			
+			for(var i =0;i<alinks.length;i++){
+				alinks[i].index=i;
+				alinks[i].onclick=function(){
+					src=this.href;
+					cur=this.index;
+					black.style.display="block";
+					big.style.display="block";
+					big.style.left=big.style.top="50%";
+					big.style.marginTop=-big.offsetHeight/2+'px';//这里margin-top要用驼峰式命名，否则会出现问题。
+					big.style.marginLeft=-big.offsetWidth/2+'px';
+					bigpic.src=src;
+                    //阻止a的默认跳转
+					return false;
+			    };
+			//点击上一张
+			left.onclick=function(){
+				cur--;
+				if(cur<0){cur=alinks.length-1;}
+				src=alinks[cur].href;
+				bigpic.src=src;
+			};
+			//点击下一张
+			right.onclick = function(){
+				cur++;
+				if(cur>alinks.length-1){cur=0;}
+				src=alinks[cur].href;
+				bigpic.src=src;
+			};
+		    }
+		    //点击黑色背景区域大图、背景消失
+		    black.onclick = function(){
+		    	black.style.display="none";
+		    	big.style.display="none";
+		    };
+		};
+	</script>
+</head>
+<body>
+	<div id="ablum">
+		<h1>MY PHOTOS</h1>
+		<div id="images">
+			<ul>
+				<li><a href='img/b1.jpg'><img src='img/s1.jpg' /></a></li>
+				<li><a href='img/b2.jpg'><img src='img/s2.jpg' /></a></li>
+				<li><a href='img/b3.jpg'><img src='img/s3.jpg' /></a></li>
+				<li><a href='img/b4.jpg'><img src='img/s4.jpg' /></a></li>
+				<li><a href='img/b5.jpg'><img src='img/s5.jpg' /></a></li>
+				<li><a href='img/b6.jpg'><img src='img/s6.jpg' /></a></li>
+				<li><a href='img/b7.jpg'><img src='img/s7.jpg' /></a></li>
+				<li><a href='img/b8.jpg'><img src='img/s8.jpg' /></a></li>
+				<li><a href='img/b9.jpg'><img src='img/s9.jpg' /></a></li>
+				<li><a href='img/b10.jpg'><img src='img/s10.jpg' /></a></li>
+				<li><a href='img/b11.jpg'><img src='img/s11.jpg' /></a></li>
+				<li><a href='img/b12.jpg'><img src='img/s12.jpg' /></a></li>
+			</ul>
+		</div>
+		<div id="black"></div>
+		<div id="big">
+			<a href="javascript:;" id="left"><</a>
+			<a href="javascript:;" id="right">></a>
+			<img src="" id='big_pic' />
+		</div>
+		<div class="clear"></div>
+	</div>
+
+	
+</body>
+</html>

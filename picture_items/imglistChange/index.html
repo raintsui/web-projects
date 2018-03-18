@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>整排图片轮播</title>
+	<style type="text/css">
+	*{margin: 0;padding: 0;}
+	#imglist{
+		margin: 100px auto;
+		width:500px;
+		height: 250px;
+		position: relative;
+		border:solid 5px pink;
+	}
+	#imglist >span{
+	    display: block;
+	    width: 20px;
+	    height: 60px;
+	    position: absolute;
+	    top: 50%;
+	    margin-top: -30px;
+	    background-color: pink;
+	    text-align: center;
+	    line-height: 60px;
+	    cursor: pointer;
+	    font-size: 1.8em;
+	    color: #fff;
+	}
+	#imglist span:nth-child(1){
+		left: 0;
+	}
+	#imglist span:nth-child(2){
+		right:0;
+	}
+	#scroll{
+		width: 450px;
+		height: 210px;
+		margin: 30px auto;
+		position: relative;
+		overflow: hidden;
+	}
+	#scrollbar{
+		width: 1000%;
+		height: 100%;
+		position: absolute;
+		left: 0;
+		top: 0;
+		-webkit-transition:all 0.5s ease;
+	}
+	#scroll dl{
+		width: 150px;
+		float: left;
+		text-align: center;
+	}
+	#scroll dl dt{
+		height: 150px;
+		line-height: 150px;
+		text-align: center;
+		background:#f3d5e6;
+		padding: 0 10px;
+		-webkit-background-clip:content-box;
+	}
+	dt img{
+		display: inline-block;
+		margin-top:25px
+	}
+	#scrollbar dl dd{
+		height:18px;
+		overflow: hidden;
+		font-size: 14px;
+		display: inline-block;
+		margin: 0 10px;
+		cursor: pointer;
+	}
+	dl dd.title a{
+		text-overflow:ellipsis;
+		text-decoration: none;
+	}
+		
+	#scrollbar dl dd span{
+		color:#E20076;
+		font-weight: bold;
+	}
+	</style>
+	<script type="text/javascript">
+		window.onload=function(){
+			var imglist=document.getElementById('imglist');
+			var scrollbar=document.getElementById('scrollbar');
+			var dls=scrollbar.getElementsByTagName('dl');
+			var left = imglist.getElementsByTagName('span')[0];
+			var right= imglist.getElementsByTagName('span')[1];
+			var num=0,cur=0;
+			num=parseInt(dls.length/3);
+
+			left.onclick=function(){
+				cur--;
+				if(cur<0){
+					alert('左到头了！');
+					cur=0;
+				}else{
+					scrollbar.style.left=-450*cur+'px';
+				}
+			};
+			right.onclick=function(){
+				cur++;
+				if(cur>num){
+					alert('右到头了！');
+					cur=num;
+				}else{
+					scrollbar.style.left=-450*cur+'px';
+				}
+			};
+
+
+
+		};
+	</script>
+</head>
+<body>
+	<div id="imglist">
+		<span><</span>
+		<span>></span>
+		<div id='scroll'>
+			<div id='scrollbar'>
+			<dl>
+				<dt><img src='images/039.png' alt='' /></dt>
+				<dd class='title'><a>创意zakka简约早餐牛奶杯</a></dd>
+				<dd>抢购价：<span>￥12</span></dd>
+			</dl>
+			<dl>
+				<dt><img src='images/040.png' alt='' /></dt>
+				<dd class='title'><a>创意zakka简约早餐牛奶杯</a></dd>
+				<dd>抢购价：<span>￥12</span></dd>
+			</dl>
+			<dl>
+				<dt><img src='images/041.png' alt='' /></dt>
+				<dd class='title'><a>创意zakka简约早餐牛奶杯</a></dd>
+				<dd>抢购价：<span>￥12</span></dd>
+			</dl>
+			<dl>
+				<dt><img src='images/042.png' alt='' /></dt>
+				<dd class='title'><a>创意zakka简约早餐牛奶杯</a></dd>
+				<dd>抢购价：<span>￥12</span></dd>
+			</dl>
+			<dl>
+				<dt><img src='images/043.png' alt='' /></dt>
+				<dd class='title'><a>创意zakka简约早餐牛奶杯</a></dd>
+				<dd>抢购价：<span>￥12</span></dd>
+			</dl>
+			<dl>
+				<dt><img src='images/044.png' alt='' /></dt>
+				<dd class='title'><a>创意zakka简约早餐牛奶杯</a></dd>
+				<dd>抢购价：<span>￥12</span></dd>
+			</dl>
+			<dl>
+				<dt><img src='images/045.png' alt='' /></dt>
+				<dd class='title'><a>创意zakka简约早餐牛奶杯</a></dd>
+				<dd>抢购价：<span>￥12</span></dd>
+			</dl>
+			<dl>
+				<dt><img src='images/046.png' alt='' /></dt>
+				<dd class='title'><a>创意zakka简约早餐牛奶杯</a></dd>
+				<dd>抢购价：<span>￥12</span></dd>
+			</dl>
+			<dl>
+				<dt><img src='images/047.png' alt='' /></dt>
+				<dd class='title'><a>创意zakka简约早餐牛奶杯</a></dd>
+				<dd>抢购价：<span>￥12</span></dd>
+			</dl>
+			<dl>
+				<dt><img src='images/048.png' alt='' /></dt>
+				<dd class='title'><a>创意zakka简约早餐牛奶杯</a></dd>
+				<dd>抢购价：<span>￥12</span></dd>
+			</dl>
+			<dl>
+				<dt><img src='images/049.png' alt='' /></dt>
+				<dd class='title'>创意zakka简约早餐牛奶杯</dd>
+				<dd>抢购价：<span>￥12</span></dd>
+			</dl>
+			<dl>
+				<dt><img src='images/050.png' alt='' /></dt>
+				<dd class='title'>创意zakka简约早餐牛奶杯</dd>
+				<dd>抢购价：<span>￥12</span></dd>
+			</dl>
+			<dl>
+				<dt><img src='images/051.png' alt='' /></dt>
+				<dd class='title'>创意zakka简约早餐牛奶杯</dd>
+				<dd>抢购价：<span>￥12</span></dd>
+			</dl>
+		</div>
+		</div>
+	</div>
+	
+</body>
+</html>

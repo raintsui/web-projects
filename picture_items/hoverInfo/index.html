@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>鼠标滑动动态文字显现效果</title>
+	<style type="text/css">
+	*{margin: 0;padding: 0}
+	#wrap{
+		width: 980px;
+		height: 100%;
+		margin: 30px auto;
+		border:1px solid #ccc;
+	}
+	.wallpaper{
+		width: 300px;
+		height: 500px;
+		float: left;
+		position: relative;
+		overflow: hidden;
+		cursor: pointer;
+	}
+	#wrap .wallpaper:nth-child(2){margin: 0 40px;}
+
+	.wallpaper img{width: 100%;height: 100%;display: block;position: relative;}
+
+	.wallpaper div{width: 100%;height: 100%;background-color: rgba(22,22,22,.6);position:absolute;top: 0;left: -300px;color: #ccc;-webkit-transition:all 0.5s ease;padding-top: 40px;font-family: '微软雅黑';}
+
+	.wallpaper h3{line-height: 2em;text-align: center;-webkit-transition:all 1s ease;position: relative;left: -300px;}
+
+	.wallpaper p{font-size: 14px;-webkit-transition:all 1s ease;position: relative;left:-300px;margin: 20px 15px 10px 20px;}
+
+	.wallpaper p b{font-weight: bold;color:#f5d6d7;}
+	.wallpaper:hover div{left: 0;}
+	.wallpaper:hover div h3{left: 0}
+	.wallpaper:hover div p{left: 0}
+
+
+
+
+	
+
+	</style>
+</head>
+<body>
+	<div id='wrap'>
+		<div class='wallpaper'>
+			<img src='images/001.jpg' />
+			<div>
+				<h3>沿途风景系列</h3>
+				<p><b>下载内容：</b><br/>
+				这款城市夜景好看的手机墙纸，是由手机墙纸图片大全（www.51ztzj.com）为您推荐的。</p>
+				<p><b>内容介绍：</b><br/>黑色的夜空作为背景，黄色光线的道路很是蜿蜒曲折！各种几何图形的建筑层层的排列开来，每个楼层上都有不同颜色的霓虹灯，整个都市充满了夜的神秘感！</p>
+				<p><b>下载费用：</b>免费</p>
+			</div>
+		</div>
+		<div class='wallpaper'>
+			<img src='images/004.jpeg' />
+			<div>
+				<h3>沿途风景系列</h3>
+				<p><b>下载内容：</b><br/>这款城市夜景好看的手机墙纸，是由手机墙纸图片大全（www.51ztzj.com）为您推荐的。</p>
+				<p><b>内容介绍：</b><br/>黑色的夜空作为背景，黄色光线的道路很是蜿蜒曲折！各种几何图形的建筑层层的排列开来，每个楼层上都有不同颜色的霓虹灯，整个都市充满了夜的神秘感！</p>
+				<p><b>下载费用：</b>免费</p>
+			</div>
+		</div>
+		<div class='wallpaper'>
+			<img src='images/007.jpeg' />
+			<div>
+				<h3>沿途风景系列</h3>
+				<p><b>下载内容：</b><br/>这款城市夜景好看的手机墙纸，是由手机墙纸图片大全（www.51ztzj.com）为您推荐的。</p>
+				<p><b>内容介绍：</b><br/>黑色的夜空作为背景，黄色光线的道路很是蜿蜒曲折！各种几何图形的建筑层层的排列开来，每个楼层上都有不同颜色的霓虹灯，整个都市充满了夜的神秘感！</p>
+				<p><b>下载费用：</b>免费</p>
+			</div>
+		</div>
+	</div>
+	
+</body>
+</html>

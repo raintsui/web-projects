@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>CSS3制作广告轮播</title>
+	<style type="text/css">
+		*{margin: 0;padding: 0;}
+		#ads{
+			width: 990px;
+			height:325px;
+			margin: 30px auto;
+			border:5px solid #000;
+			position: relative;
+		}
+		input.tabs{display: none;}
+		input.tabs + label{height: 65px;width: 270px;display: block;cursor: pointer;position: absolute;right: 0;background: #414141;filter: alpha(opacity=80);-moz-opacity:0.8;opacity:0.8;}
+		#ads label:nth-of-type(1){top: 0;}
+		#ads label:nth-of-type(2){top: 65px;}
+		#ads label:nth-of-type(3){top: 130px;}
+		#ads label:nth-of-type(4){top: 195px;}
+		#ads label:nth-of-type(5){top: 260px;}
+		input.tabs + label dl{padding: 7px 15px;}
+		input.tabs + label dl dt{width: 50px;height: 50px;float: left;margin-right: 10px;}
+		input.tabs + label dl dd.title{font-size: 14px;color: #fff;}
+		input.tabs + label dl dd{font-family:"微软雅黑"; font-size: 12px;color: #E3E3E3;line-height: 24px;padding-right: 15px;}
+
+		.tp{height: 0px;width:990px;/*width:990px;发现如果加上宽度有一种翻页的感觉，不加就是从上而下和从下而上的效果*/-webkit-transition:height 0.5s ease;display: block;}
+
+		input.tabs:checked + label dl{background: -webkit-gradient(linear,left top,right bottom,color-stop(0,rgba(0,0,0,.65)),color-stop(1,transparent));}
+		input#tab1:checked ~ #img1{height:325px;}
+		input#tab2:checked ~ #img2{height:325px;}
+		input#tab3:checked ~ #img3{height:325px;}
+		input#tab4:checked ~ #img4{height:325px;}
+		input#tab5:checked ~ #img5{height:325px;}
+
+	</style>
+</head>
+<body>
+	<div id='ads'>
+		<!--点击的事项和表单元素挂钩-->
+		<input type="radio" id='tab1' name="tab" class='tabs' checked="checked"/>
+		<label for='tab1'>
+			<dl>
+				<dt><img src='img/058.png' width="50px;" /></dt>
+				<dd class='title'>精心挑选，倾情推荐</dd>
+				<dd>推荐精品好物，享受精致生活</dd>
+			</dl>
+		</label>
+		<input type="radio" id='tab2' name="tab" class='tabs' />
+		<label for='tab2'>
+			<dl>
+				<dt><img src='img/085.png' width="50px;" /></dt>
+				<dd class='title'>精心挑选，倾情推荐</dd>
+				<dd>推荐精品好物，享受精致生活</dd>
+			</dl>
+		</label>
+		<input type="radio" id='tab3' name="tab" class='tabs' />
+		<label for='tab3'>
+			<dl>
+				<dt><img src='img/087.png' width="50px;" /></dt>
+				<dd class='title'>精心挑选，倾情推荐</dd>
+				<dd>推荐精品好物，享受精致生活</dd>
+			</dl>
+		</label>
+		<input type="radio" id='tab4' name="tab" class='tabs' />
+		<label for='tab4'>
+			<dl>
+				<dt><img src='img/092.png' width="50px;" /></dt>
+				<dd class='title'>精心挑选，倾情推荐</dd>
+				<dd>推荐精品好物，享受精致生活</dd>
+			</dl>
+		</label>
+		<input type="radio" id='tab5' name="tab" class='tabs' />
+		<label for='tab5'>
+			<dl>
+				<dt><img src='img/097.png' width="50px;" /></dt>
+				<dd class='title'>精心挑选，倾情推荐</dd>
+				<dd>推荐精品好物，享受精致生活</dd>
+			</dl>
+		</label>
+		<!--左边图片-->
+		<img src='img/001.jpg' id='img1' class='tp' alt='' />
+		<img src='img/002.jpg' id='img2' class='tp' alt='' />
+		<img src='img/003.jpg' id='img3' class='tp' alt='' />
+		<img src='img/004.jpg' id='img4' class='tp' alt='' />
+		<img src='img/005.jpg' id='img5' class='tp' alt='' />
+	</div>
+	<!--利用表单元素:checked伪元素功能，再加上图片设置前后0-200高度变化从而形成轮播的视觉效果-->
+</body>
+</html>

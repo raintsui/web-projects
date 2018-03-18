@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>放大镜效果</title>
+	<style type="text/css">
+       *{
+			margin: 0;padding: 0;
+		}
+		#normal{
+			width: 300px;
+			height: 400px;
+			position: relative;
+			margin:80px 80px;
+		}
+		#normal>img{width: 100%;height: 100%;}
+		#lay{background-color:powderblue;position: absolute;left: 0;top: 0;display: none;cursor: move;filter: alpha(opacity=60);opacity: 0.6;-webkit-opacity:0.6;}
+		#bigImg{position: absolute;top: 80px;left: 500px;display: none;width: 300px;height: 400px;overflow: hidden;}
+		#bigImg>img{position:absolute;display: block;}
+	</style>
+
+</head>
+<body>
+	<div id='normal'>
+		<img src='images/2.jpeg' />
+		<span id='lay'></span>
+	</div>
+	<div id='bigImg'>
+		<img src='images/2.jpeg' />
+	</div>
+	<script type="text/javascript">
+		window.onload=function(){
+			var normal = document.getElementById('normal'),
+			    lay =document.getElementById('lay'),
+			    bigImg = document.getElementById('bigImg'),
+			    imgb = bigImg.getElementsByTagName('img')[0];
+
+			var scale = 4;
+		    normal.onmouseover=function(){
+		    	lay.style.display='block';
+		    	bigImg.style.display='block';
+		    };
+		    normal.onmouseout=function(){
+		    	lay.style.display='none';
+		    	bigImg.style.display='none';
+		    };
+		    normal.onmousemove=function(e){
+		    	//获取放大镜lay的区域/起始位置
+		    	e = event||window.event;
+		    	var x = e.clientX-lay.offsetWidth/2-normal.offsetLeft;
+		    	var y = e.clientY-lay.offsetHeight/2-normal.offsetTop;
+		    	//判断超出边界问题
+		    	if(x<0){x=0;}
+		    	else if(x>normal.offsetWidth-lay.offsetWidth){
+		    		x=normal.offsetWidth-lay.offsetWidth;
+		    	}
+		    	if(y<0){y=0;}
+		    	else if(y>normal.offsetHeight-lay.offsetHeight){
+		    		y=normal.offsetHeight-lay.offsetHeight;
+		    	}
+
+		    	lay.style.left=x+'px';
+		    	lay.style.top=y+'px';
+		    	//计算放大镜相对于原图缩小scape倍数的宽高
+		    	lay.style.width=parseInt(normal.offsetWidth/scale)+'px';
+		    	lay.style.height=parseInt(normal.offsetHeight/scale)+'px';
+		    	//计算放大同等倍数scape的宽高
+		    	imgb.style.width=normal.offsetWidth*scale+'px';
+		    	imgb.style.height=normal.offsetHeight*scale+'px';
+		    	//计算放大后图片的left\top，以让lay位置的图像放大显示出来
+		    	
+		    	imgb.style.left = -x*scale+'px';
+		    	imgb.style.top=-y*scale+'px';
+		    };
+		};
+	</script>
+</body>
+</html>

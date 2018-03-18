@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>3D图片轮播图切换</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		#lunbo{
+			width: 100%;
+			height: 340px;
+			position: relative;
+			margin-top:100px;
+			/*background: #099;*/
+		}
+		.btn{
+			width: 45px;
+			position: absolute;
+			font-size: 2em;
+			height: 100px;
+			line-height:100px;
+			color: white;
+			background: rgba(11,23,3,.2);
+			top: 50%;
+			margin-top: -50px;
+			text-decoration: none;
+			text-align: center;
+		}
+		.next{
+			right: 0;
+		}
+		.list{
+			width: 1200px;
+			height: 300px;
+			position: absolute;
+			left: 50%;
+			margin-left: -600px;
+			overflow: hidden;
+			/*border:1px solid #332;*/
+		}
+		li{
+			position: absolute;
+			top: 0;
+			left: 0;
+			opacity: 0;
+			list-style: none;
+			transition: all 0.5s ease-out;
+		}
+		/*.list li{
+			position: absolute;
+			top: 0;
+			left: 0;
+			opacity: 0;
+			transition: all 0.3s ease-out;
+		} 
+		     不知道为什么li标签前加入类名.list或是id#lunbo后都无法出现（图片）效果*/
+	   
+		.list img{
+			width: 751px;
+			height: 300px;
+			float: left;
+			border:none;
+		}
+
+		/*设置轮播长图中每个图的偏移位置*/
+		.p1{
+			transform: translate3d(-224px,0,0) scale(0.81);
+		}
+		.p2{
+			transform: translate3d(0,0,0) scale(0.81);
+			opacity: 0.8;
+			transform-origin: 0 50%;
+			z-index: 2; 
+		}
+		.p3{
+			transform: translate3d(224px,0,0) scale(1);
+			opacity: 1;
+			z-index: 3;
+		}
+		.p4{
+			transform: translate3d(449px,0,0) scale(0.81);
+			opacity: 0.8;
+			z-index:2;
+			transform-origin: 100% 50%;
+		}
+		.p5{
+			transform:translate3d(672px,0,0) scale(0.81);
+		}
+		.p6{
+			transform:translate3d(896px,0,0) scale(0.81);
+		}
+		.p7{transform:translate3d(1120px,0,0) scale(0.81);}
+		.p8{transform:translate3d(1344px,0,0) scale(0.81);}
+		.btns{
+			width: 1200px;
+			height: 30px;
+			position: absolute;
+			left: 50%;
+			bottom: 0;
+			margin-left: -600px;
+			text-align: center;
+			padding-top: 10px;
+			/*border:1px solid #333;*/
+		}
+		.btns a{
+			height: 10px;
+			width: 35px;
+			padding-top: 5px;
+			display: inline-block;
+		}
+		.btns span{
+			height: 3px;
+			width: 35px;
+			display: block;
+			border-radius: 3px
+		}
+		span{
+			background: #ccc;}
+		.blue{
+			background: blue;
+		}
+	</style>
+</head>
+<body>
+	
+	<div id='lunbo'>
+<!--图片列表-->
+		<div class='list'>
+			<ul>
+				<li class='p8'><a href='#'><img src='img/001.png' alt='' /></a></li>
+				<li class='p7'><a href='#'><img src='img/002.jpg' alt='' /></a></li>
+				<li class='p6'><a href='#'><img src='img/003.jpg' alt='' /></a></li>
+				<li class='p5'><a href='#'><img src='img/004.jpg' alt='' /></a></li>
+				<li class='p4'><a href='#'><img src='img/005.jpg' alt='' /></a></li>
+				<li class='p3'><a href='#'><img src='img/006.jpg' alt='' /></a></li>
+				<li class='p2'><a href='#'><img src='img/007.jpg' alt='' /></a></li>
+				<li class='p1'><a href='#'><img src='img/008.jpg' alt='' /></a></li>
+				<!--这里倒序后面好实施，类"p3"，看数组中它的移动方向来判断图片的移动方向-->
+			</ul>
+	    </div>
+<!--图片轮播两边按钮-->
+	<a href="javascript:;" class='prev btn'><</a>
+	<a href="javascript:;" class='next btn'>></a>
+<!--轮播图片下方按钮标志-->
+	<div class='btns'>
+		<a href="javascript:;"><span class='blue'></span></a>
+		<a href="javascript:;"><span></span></a>
+		<a href="javascript:;"><span></span></a>
+		<a href="javascript:;"><span></span></a>
+		<a href="javascript:;"><span></span></a>
+		<a href="javascript:;"><span></span></a>
+		<a href="javascript:;"><span></span></a>
+		<a href="javascript:;"><span></span></a>
+	</div>
+</div>
+	<script type='text/javascript' src='js/jquery-3.1.1.min.js'></script>
+	<script type="text/javascript">
+		var $s=$(".btns span");
+		var index=0;
+		var cArr=['p8','p7','p6','p5','p4','p3','p2','p1'];
+		//点击上一张
+		$('.prev').click(function(){
+			prevImg();
+		});
+		//点击下一张
+		$(".next").click(function(){
+			nextImg();
+		});
+
+		//上一张函数
+		function prevImg(){
+			cArr.unshift(cArr[7]);
+			cArr.pop();
+			//$(element).each(function(index,element){})为每个元素匹配运行函数，必需的;
+			//这里index是选择器的位置，element是当前的元素，也可选择“this”选择器。
+			$(".list li").each(function(i,e){
+				$(e).removeClass().addClass(cArr[i]);
+			});
+			index--;
+			if(index<0){index=7;}
+			show();
+		}
+
+		//下一张点击函数
+		function nextImg(){
+			cArr.push(cArr[0]);
+			cArr.shift();
+			$(".list li").each(function(i,e){
+				$(e).removeClass().addClass(cArr[i]);
+			});
+			index++;
+			if(index>7){index=0;}
+			show();
+		}
+		
+		//下方按钮点击时
+		$(".btns a").each(function(){
+			$(this).click(function(){
+			var myindex = $(this).index();//返回相对于同胞们的位置
+			var b = myindex-index;
+			if(b==0){
+				return;
+			}
+			else if(b>0){
+			//b>0时，目标位置在原始位置右方，间隔为b,图片是向左边翻过去b个正好让目标位置对应的图片添加样式'p3'.
+			//那么数组中的样式序号便左移b位
+				var newarr = cArr.splice(0,b);
+				cArr=cArr.concat(newarr);//cArr=$.merge(cArr,newarr);jQuery方法
+				$('.list li').each(function(i,e){
+					$(e).removeClass().addClass(cArr[i]);
+				});
+				index=myindex;
+				show();
+			}
+			else if(b<0);
+			//b<0时，目标位置在原始位置左边，我们可以想象着让它右移，右移的位置恰好是间隔个数。
+			//先让数组倒转，左移位置b个，然后在倒转过来
+			//理解：8个方块在你面前，0,1,2,3,4,5,6,7,8。假设2和5，把目光倒过来看这一排方块，倒转数字左移其实就是你看见的右移动，2就在5的位置上，但是序号是倒转的，所以需要在倒转数组。
+			cArr.reverse();
+			var oldarr = cArr.splice(0,-b);
+			cArr=cArr.concat(oldarr);//cArr=$.merge(cArr,oldarr);
+			cArr.reverse();
+			$(".list li").each(function(i,e){
+				$(e).removeClass().addClass(cArr[i]);
+			});
+			index=myindex;
+			show();
+		    });		
+		});
+
+
+		//轮播下方按钮实现
+		function show(){
+			$s.eq(index).addClass('blue').parent().siblings().children().removeClass('blue');
+		}
+		
+		//点击class为p2的元素触发“上一张”的函数
+		$(document).on("click",".p2",function(){
+			prevImg();
+			return false;//取消a的默认跳转
+		});
+		//点击class为p4的元素触发“下一张”的函数
+		$(document).on("click",".p4",function(){
+			nextImg();
+			return fasle;
+		});
+
+		//鼠标在盒子中时清除计时器
+		$("#lunbo").onmouseover(function(){
+			clearInterval(timer);
+		});
+		//鼠标移出盒子外开始计时器
+		$("#lunbo").onmouseleave(function(){
+			timer = setInterval(nextImg,3000);
+			
+		});
+		timer=setInterval(nextImg,3000);
+
+		
+
+			
+			
+
+	</script>
+	
+</body>
+</html>

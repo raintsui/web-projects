@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>鼠标滑动图片信息显示</title>
+	<style type="text/css">
+	*{margin: 0;padding: 0;}
+	#wrap{ width:980px;height:auto;margin: 0 auto;}
+
+	.top{width:300px;height:400px;margin-right: 20px;}
+	.bottom{width:140px;height:200px;margin:10px 20px 10px 0px;}
+	.imgInfo{position: relative;float: left;overflow: hidden;cursor: pointer;}
+	
+	img{
+		width: 100%;
+		height: 100%;
+	}
+
+	.imgInfo span{
+		position: absolute;
+		bottom:-100px;
+		display: block;
+		width: 100%;
+		height: 50px;
+		background-color:rgba(0,0,0,.8);
+		text-align: center;
+		cursor: pointer;
+		transition:all .5s ease;
+	}
+
+	.imgInfo span i{
+		margin: 10px auto;
+		border-radius: 5px;
+		font-size: 14px;
+		padding: 0 1em;
+		height: 30px;
+		font-style: normal;
+		line-height: 30px;
+		display:inline-block;color:#ccc;
+		background:-webkit-gradient(linear,left top,right bottom,color-stop(0,rgba(23,123,123,.8)),color-stop(0.5,transparent),color-stop(1,rgba(23,123,123,.8)));
+		/*渐变在chrome中要加入前缀-webkit-,另外也要注意渐变里面的属性值和属性名，是left top，top left显示不出来。*/
+	}
+		
+
+	.imgInfo:hover>span{bottom: 0;-webkit-transition:all .5s ease;}
+	</style>
+</head>
+<body>
+	<div id='wrap'>
+		<div class='imgInfo top'>
+			<img src='images/001.jpg' />
+			<span><i>一键装入手机</i></span>
+		</div>
+		<div class='imgInfo top'>
+			<img src='images/004.jpeg' />
+			<span><i>一键装入手机</i></span>
+		</div>
+		<div class='imgInfo top'>
+			<img src='images/007.jpeg' />
+			<span><i>一键装入手机</i></span>
+		</div>
+		<div class='imgInfo bottom'>
+			<img src='images/007.jpeg' />
+			<span><i>一键装入手机</i></span>
+		</div>
+		<div class='imgInfo bottom'>
+			<img src='images/004.jpeg' />
+			<span><i>一键装入手机</i></span>
+		</div>
+		<div class='imgInfo bottom'>
+			<img src='images/001.jpg' />
+			<span><i>一键装入手机</i></span>
+		</div>
+		<div class='imgInfo bottom'>
+			<img src='images/007.jpeg' />
+			<span><i>一键装入手机</i></span>
+		</div>
+		<div class='imgInfo bottom'>
+			<img src='images/004.jpeg' />
+			<span><i>一键装入手机</i></span>
+		</div>
+		<div class='imgInfo bottom'>
+			<img src='images/001.jpg' />
+			<span><i>一键装入手机</i></span>
+		</div>
+	</div>
+	
+</body>
+</html>
