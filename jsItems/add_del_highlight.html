@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>表格鼠标停留高亮、添加删除行</title>
+   <script type="text/javascript"> 
+  
+      window.onload = function(){
+        Highlight();
+      };
+      // 鼠标移动改变背景,可以通过给每行绑定鼠标移上事件和鼠标移除事件来改变所在行背景色。
+        function Highlight(){
+            var tb = document.getElementById("table").lastChild;
+            //注意虽然代码中没有tbody标签，但浏览器会自动添加tbody标签和caption标签
+            var trs = document.getElementsByTagName('tr');
+            for(var i = 1;i < trs.length; i++){
+                trs[i].onmouseover = function(){
+                    this.style.backgroundColor = "#f2f2f2";
+                };
+                trs[i].onmouseout = function(){
+                    this.style.backgroundColor = "#fff";
+                };
+            }
+        }  
+	 
+      // 编写一个函数，供添加按钮调用，动态在表格的最后一行添加子节点；
+     function addRow(){
+         var tb = document.getElementById('table').lastChild;
+         var tr = document.createElement('tr');
+         var td = document.createElement('td');
+         td.innerHTML = "<input type='text' value='' />";
+         tr.appendChild(td);
+
+         //必须每次需要文本或元素节点就必须新建，否则重复利用只是将原先的节点移动了。
+         td = document.createElement('td');
+         td.innerHTML = "<input type='text' value='' />";//添加行的目的是让用户添加表格文字，所以需要在tr标签中加入表单标签
+         tr.appendChild(td);
+         
+         td = document.createElement('td');
+         var a = document.createElement('a');
+         a.innerHTML = "删除";
+         a.setAttribute('href','javascript:;');
+         a.setAttribute('onclick','deleteRow(this)');
+         //这里也可以直接写成td.innerHTML="<a href='javascript:;' onclick='delete='deleteRow(this)' >删除</a>";这里deleteRow(this)不可以少了this关键字。
+         td.appendChild(a);
+         tr.appendChild(td);
+         tb.appendChild(tr);
+     }
+    		  	 
+     // 创建删除函数
+     function deleteRow(obj){
+         var tb = document.getElementById("table").lastChild;
+         var tr = obj.parentNode.parentNode;//为什么这里是两个parentNode？是因为关键词this在鼠标点击’删除‘时得到的对象是文本节点吗？
+         tb.removeChild(tr);
+     }
+
+
+  </script> 
+ </head> 
+ <body> 
+	   <table border="1" width="50%" id="table">
+	   <tr>
+		<th>学号</th>
+		<th>姓名</th>
+		<th>操作</th>
+	   </tr>  
+
+	   <tr>
+		<td>xh001</td>
+		<td>王小明</td>
+		<td><a href="javascript:;" onclick="deleteRow(this)" >删除</a></td>   <!--在删除按钮上添加点击事件。伪协议表示在触发a标签默认动作时，会默认执行后面javascript代码。这里的作用是防止链接跳转当前页面。但是直接在href后加入作用函数出现了差错，原因是？  -->
+	   </tr>
+
+	   <tr>
+		<td>xh002</td>
+		<td>刘小芳</td>
+		<td><a href="javascript:;" onclick="deleteRow(this)" >删除</a></td>   <!--在删除按钮上添加点击事件  -->
+	   </tr>  
+
+	   </table>
+	   <input type="button" value="添加一行" onclick='addRow()' />   <!--在添加按钮上添加点击事件  -->
+ </body>
+</html>

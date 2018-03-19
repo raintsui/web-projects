@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>鼠标mouseover/mouseout事件停留触发多次问题</title>
+	<style type="text/css">
+		*{margin: 0;padding: 0;}
+		#iconMove{
+			margin: 20px auto;
+			width: 360px;
+			height: 200px;
+			background-color: #096;
+		}
+		#iconMove a{
+			width:70px;
+			height:37px;
+			float: left;
+			margin:5px 10px;
+			background-color: #fff;
+			color:#ccc;
+			overflow: hidden;
+			text-decoration: none;
+			position: relative;
+			text-align: center;
+			padding-top: 55px;
+			line-height: 37px;
+			
+
+		}
+		#iconMove a:hover{
+			color:red;
+		}
+
+		#iconMove a i{
+			position: absolute;
+			top: 20px;
+			left: 0px;
+			display: inline-block;
+			width: 100%;
+			height:35px;
+			text-align: center;
+			background-color: black;
+			line-height: 35px;
+			filter:alpha(opacity:100);
+			opacity:100;
+
+		}
+		i img{
+			width: 25px;
+			height: 25px;
+			vertical-align: middle;
+			border:none;
+		}
+	</style>
+</head>
+<body>
+	<div id='iconMove'>
+		<a href="#"><i><img src="..images/"></i><p>圣诞树</p></a>
+		<a href="#"><i><img src="..images/"></i><p>圣诞树</p></a>
+		<a href="#"><i><img src="..images/"></i><p>圣诞树</p></a>
+		<a href="#"><i><img src="..images/"></i><p>圣诞树</p></a>
+		<a href="#"><i><img src="..images/"></i><p>圣诞树</p></a>
+		<a href="#"><i><img src="..images/"></i><p>圣诞树</p></a>
+		<a href="#"><i><img src="..images/"></i><p>圣诞树</p></a>
+		<a href="#"><i><img src="..images/"></i><p>圣诞树</p></a>
+	</div>
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script >
+	$(function(){
+		$('#iconMove a').mouseenter(function(){
+			$(this).find('i').animate({top:'-25px',opacity:'0'},300,function(){
+				$(this).css({top:'30px'});
+				$(this).animate({top:'20px',opacity:'1'},200);
+			});
+		});
+	});
+</script>
+
+
+</script>
+</body>
+</html>
